@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function Menu() {
   return (
-    <nav className="main-manu">
+    <nav className="main-menu">
       <ul>
         <Link to="/">
           <li>Painel</li>

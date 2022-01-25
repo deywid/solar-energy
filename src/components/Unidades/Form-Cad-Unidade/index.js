@@ -7,7 +7,7 @@ function CadUnidade() {
   return (
     <>
       <div>Form Cadastro Unidades</div>
-      <button onClick={() => navigate("/Unidades/")}>Voltar</button>
+      <button onClick={() => navigate("/Unidades")}>Voltar</button>
     </>
   );
 }
