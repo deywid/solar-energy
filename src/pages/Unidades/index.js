@@ -1,10 +1,11 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
+import { Title } from "../../components/Title/style";
 
 function Unidades() {
   return (
     <>
-      <h1>Unidades</h1>
+      <Title>Unidades</Title>
       <Outlet />
     </>
   );

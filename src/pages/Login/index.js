@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 import background from "../../images/login-bg-1920x1080.jpg";
-//import logo  from "../../images/logo.jpg";
+import logo from "../../images/logo.png";
 import "./style.css";
 
 function Login() {
@@ -21,7 +21,7 @@ function Login() {
         className="item-login-bg"
       ></img>
       <div className="item-login-content">
-        <img src="" alt="solar-energy-logo" className="item-img-logo"></img>
+        <img src={logo} alt="solar-energy-logo" className="item-img-logo"></img>
         <form onSubmit={handleLogin} className="item-form-login">
           <h3>Seja bem vindo</h3>
           <input type="email" placeholder="E-mail" />

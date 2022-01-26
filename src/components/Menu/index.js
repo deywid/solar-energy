@@ -1,21 +1,41 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import logo from "../../images/logo.png";
+import {
+  StyledMenu,
+  MenuOption,
+  Text,
+  StyledLink,
+  MenuLogo,
+  IcoPainel,
+  IcoUnidade,
+  IcoCadastro,
+} from "./style";
 
 function Menu() {
   return (
-    <nav className="main-menu">
+    <StyledMenu>
+      <MenuLogo src={logo} alt="solar-energy-logo" />
       <ul>
-        <Link to="/">
-          <li>Painel</li>
-        </Link>
-        <Link to="/Unidades">
-          <li>Unidades</li>
-        </Link>
-        <Link to="/Cadastros">
-          <li>Cadastro de energia gerada</li>
-        </Link>
+        <StyledLink to="/">
+          <MenuOption>
+            <IcoPainel />
+            <Text>Painel</Text>
+          </MenuOption>
+        </StyledLink>
+        <StyledLink to="/Unidades">
+          <MenuOption>
+            <IcoUnidade />
+            <Text>Unidades</Text>
+          </MenuOption>
+        </StyledLink>
+        <StyledLink to="/Cadastros">
+          <MenuOption>
+            <IcoCadastro />
+            <Text>Cadastro de energia gerada</Text>
+          </MenuOption>
+        </StyledLink>
       </ul>
-    </nav>
+    </StyledMenu>
   );
 }
 
