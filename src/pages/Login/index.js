@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import background from "../../images/login-bg-1920x1080.jpg";
@@ -7,9 +7,12 @@ import "./style.css";
 
 function Login() {
   const navigate = useNavigate();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   function handleLogin(event) {
     event.preventDefault();
-
     navigate("/");
   }
 
@@ -24,8 +27,16 @@ function Login() {
         <img src={logo} alt="solar-energy-logo" className="item-img-logo"></img>
         <form onSubmit={handleLogin} className="item-form-login">
           <h3>Seja bem vindo</h3>
-          <input type="email" placeholder="E-mail" />
-          <input type="password" placeholder="Senha" />
+          <input
+            type="email"
+            placeholder="E-mail"
+            onChange={(ev) => setEmail(ev.target.value)}
+          /><span>{email}</span>
+          <input
+            type="password"
+            placeholder="Senha"
+            onChange={(ev) => setPassword(ev.target.value)}
+          /><span>{password}</span>
           <button>Entrar</button>
         </form>
       </div>

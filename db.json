@@ -1,0 +1,42 @@
+{
+  "unidades": [
+    {
+      "apelido": "Sunny",
+      "local": "Floripa",
+      "marca": "Sun+",
+      "modelo": "FR2001",
+      "ativo": true,
+      "id": 1
+    },
+    {
+      "apelido": "EssePe",
+      "local": "São Paulo",
+      "marca": "Sun+",
+      "modelo": "FR2001",
+      "ativo": true,
+      "id": 2
+    },
+    {
+      "apelido": "Mais um",
+      "local": "Palhoca",
+      "marca": "JinkoSolar",
+      "modelo": "JKM 460M",
+      "ativo": true,
+      "id": 3
+    }
+  ],
+  "geracao": [
+    {
+      "unidade": "Sunny",
+      "data": "2022-01-29",
+      "total_gerado": "45",
+      "id": 1
+    },
+    {
+      "unidade": "EssePe",
+      "data": "2021-01-02",
+      "total_gerado": "77",
+      "id": 2
+    }
+  ]
+}

@@ -6,8 +6,8 @@ import TemplatePage from "./pages/TemplatePage";
 import Painel from "./pages/Painel";
 import Unidades from "./pages/Unidades";
 import Cadastros from "./pages/Cadastros";
-import CadUnidade from "./components/Unidades/Form-Cad-Unidade";
-import ListaUnidades from "./components/Unidades/Lista-Unidades";
+import CadUnidade from "./components/Form-Cad-Unidade";
+import ListaUnidades from "./components/Lista-Unidades";
 
 function App() {
   return (

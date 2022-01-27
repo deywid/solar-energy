@@ -1,30 +1,60 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function CadUnidade() {
   const navigate = useNavigate();
 
+  const initialForm = {
+    apelido: "",
+    local: "",
+    marca: "",
+    modelo: "",
+    ativo: false,
+  };
+
+  const [unidades, setUnidades] = useState(initialForm);
+
+  function handleChange(ev) {
+    const { name, value, checked } = ev.target;
+    const formValues = name !== "ativo" ? value : checked;
+    setUnidades({ ...unidades, [name]: formValues });
+  }
+
+  function handleSubmit(ev) {
+    ev.preventDefault();
+    axios.post("http://localhost:3333/unidades", unidades);
+  }
+
   return (
     <>
       <h2>Cadastro de unidade geradora</h2>
-      <form className="item-form">
-        <label htmlFor="item-apelido">Apelido</label>
-        <input type="text" id="item-apelido" />
-        <label htmlFor="item-local">Local</label>
-        <input type="text" id="item-local" />
-        <label htmlFor="item-marca">Marca</label>
-        <input type="text" id="item-marca" />
-        <label htmlFor="item-modelo">Modelo</label>
-        <input type="text" id="item-modelo" />
-        <label htmlFor="item-isAtivo">
-          <input type="checkbox" id="item-isAtivo" />
+      <form className="item-form" onSubmit={handleSubmit}>
+        <label htmlFor="apelido">Apelido</label>
+        <input
+          type="text"
+          id="apelido"
+          name="apelido"
+          onChange={handleChange}
+        />
+        <label htmlFor="local">Local</label>
+        <input type="text" id="local" name="local" onChange={handleChange} />
+        <label htmlFor="marca">Marca</label>
+        <input type="text" id="marca" name="marca" onChange={handleChange} />
+        <label htmlFor="modelo">Modelo</label>
+        <input type="text" id="modelo" name="modelo" onChange={handleChange} />
+        <label htmlFor="ativo">
+          <input
+            type="checkbox"
+            id="ativo"
+            name="ativo"
+            onChange={handleChange}
+          />
           Ativo
         </label>
-        <div>
-          <button>Salvar</button>
-          <button onClick={() => navigate("/Unidades")}>Voltar</button>
-        </div>
+        <button type="submit">Salvar</button>
       </form>
+      <button onClick={() => navigate("/Unidades")}>Voltar</button>
     </>
   );
 }

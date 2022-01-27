@@ -27,9 +27,9 @@ export const Text = styled.span`
 `;
 
 export const MenuOption = styled.li`
-display: flex;
-align-items: center;
-gap: 22px;
+  display: flex;
+  align-items: center;
+  gap: 22px;
   padding: 12px 22px;
   border-radius: 20px;
 
@@ -61,7 +61,7 @@ export const StyledMenu = styled.nav`
   display: flex;
   flex-direction: column;
   align-items: center;
-  
+
   padding: 8px;
   width: 20%;
   min-width: 250px;
