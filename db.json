@@ -23,6 +23,14 @@
       "modelo": "JKM 460M",
       "ativo": true,
       "id": 3
+    },
+    {
+      "apelido": "Painel 0",
+      "local": "Rua 0",
+      "marca": "Canadian",
+      "modelo": "155w",
+      "ativo": false,
+      "id": 4
     }
   ],
   "geracao": [
