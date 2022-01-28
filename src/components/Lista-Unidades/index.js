@@ -9,7 +9,6 @@ function ListaUnidades() {
 
   useEffect(() => {
     axios.get("http://localhost:3333/unidades").then(function (response) {
-      console.log(response.data);
       setLista(response.data);
     });
   }, []);
