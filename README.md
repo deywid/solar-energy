@@ -18,3 +18,7 @@
 -realizado o uso de hooks para controle de componentes
 -realizado o uso do axios para preencher e consumir o db a partir das requisições
 
+{27&28&29/jan}
+-estudo e aplicação do gráfico em linha - utilizado a lib react-chartjs-2
+-implementação do calculo total gerado por mês no gráfico
+-estudo de Objects.values...Object.keys 
