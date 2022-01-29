@@ -9,28 +9,47 @@ function Painel() {
 
   useEffect(() => {
     axios.get("http://localhost:3333/geracao").then(function (response) {
-      setRequest([...response.data]);
+      setRequest(response.data);
     });
   }, []);
 
-  const filter = request.filter((item) => new Date(item.data).getMonth());
-  const soma = filter.reduce((a, b) => a + parseFloat(b.total_gerado), 0);
+  function get_TotalGenerated() {
+    const soma = [];
 
-  console.log(filter, soma);
+    const groupBy = request.reduce(function (acum, elem) {
+      const mes = new Date(elem.data).getMonth();
+      acum[mes] = acum[mes] || [];
+      acum[mes].push(elem.total_gerado);
+      return acum;
+    }, Object.create(null));
 
-  const data = {
-    labels: [
+    for (let val of Object.values(groupBy)) {
+      soma.push(
+        val.reduce(function (acum, elem) {
+          return acum + +elem; //parse
+        }, 0)
+      );
+    }
+    return soma;
+  }
+
+  function get_UniqueMonths() {
+    return [
       ...new Set(
         request.map((item) =>
           new Date(item.data).toLocaleString("pt-br", { month: "long" })
         )
       ),
-    ],
+    ];
+  }
+
+  const data = {
+    labels: get_UniqueMonths(),
     datasets: [
       {
         label: "",
-        data: request.map((item) => item.total_gerado),
-        backgroundColor: ["#2196F3"],
+        data: get_TotalGenerated(),
+        backgroundColor: "#2196F3",
         borderWidth: 2,
         borderColor: "#2196F3",
       },
