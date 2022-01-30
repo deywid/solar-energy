@@ -1,10 +1,19 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
+import { FiLock, FiMail } from "react-icons/fi";
 import { PageButton } from "../../components/Buttons";
 
-import background from "../../images/login-bg-1920x1080.jpg";
-import logo from "../../images/logo.png";
-import "./style.css";
+import {
+  LoginContainer,
+  LoginFormContainer,
+  LoginLeftSide,
+  LoginRightSide,
+  LoginGreeting,
+  LoginForm,
+  LoginLogo,
+} from "./style";
+import CustomInput from "../../components/Inputs";
 
 function Login() {
   const navigate = useNavigate();
@@ -14,36 +23,41 @@ function Login() {
 
   function handleLogin(event) {
     event.preventDefault();
-    navigate("/");
+
+    if (email && password) {
+      navigate("/");
+    }
   }
 
   return (
-    <div className="container">
-      <img
-        src={background}
-        alt="solar-energy-background"
-        className="item-login-bg"
-      ></img>
-      <div className="item-login-content">
-        <img src={logo} alt="solar-energy-logo" className="item-img-logo"></img>
-        <form onSubmit={handleLogin} className="item-form-login">
-          <h3>Seja bem vindo</h3>
-          <input
-            type="email"
-            placeholder="E-mail"
-            onChange={(ev) => setEmail(ev.target.value)}
-          />
-          <span>{email}</span>
-          <input
-            type="password"
-            placeholder="Senha"
-            onChange={(ev) => setPassword(ev.target.value)}
-          />
-          <span>{password}</span>
-          <PageButton primary>Entrar</PageButton>
-        </form>
-      </div>
-    </div>
+    <LoginContainer>
+      <LoginLeftSide />
+      <LoginRightSide>
+        <LoginFormContainer>
+          <LoginLogo />
+          <LoginForm onSubmit={handleLogin}>
+            <LoginGreeting>Seja bem vindo</LoginGreeting>
+            <CustomInput>
+              <FiMail />
+              <input
+                type="email"
+                placeholder="E-mail"
+                onChange={(ev) => setEmail(ev.target.value)}
+              />
+            </CustomInput>
+            <CustomInput>
+              <FiLock />
+              <input
+                type="password"
+                placeholder="Senha"
+                onChange={(ev) => setPassword(ev.target.value)}
+              />
+            </CustomInput>
+            <PageButton>Entrar</PageButton>
+          </LoginForm>
+        </LoginFormContainer>
+      </LoginRightSide>
+    </LoginContainer>
   );
 }
 

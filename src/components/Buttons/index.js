@@ -25,11 +25,11 @@ font-family: "poppins", sans-serif;
   align-items: center;
 
   cursor: pointer;
-  padding: 16px 24px;
+  padding: 12px 32px;
 
   max-width: ${(props) => props.maxWidth};
   
-  background-color: ${(props) => (props.primary ? "#4C5DF1" : "#D82D56")};
+  background-color: ${(props) => (props.primary ? "#4C5DF1" : "#4CBC9A")};
   box-shadow: 0px 20px 50px rgba(55, 69, 87, 0.1);
-  border-radius: 20px;
+  border-radius: 10px;
 `;

@@ -5,8 +5,6 @@ import LineChart from "../../components/Charts";
 import { Title } from "../../components/Title/style";
 import Cards from "../../components/Cards";
 
-
-
 function Painel() {
   const [geracao, setGeracao] = useState([]);
   const [unidades, setUnidades] = useState([]);
@@ -63,7 +61,7 @@ function Painel() {
     return soma;
   }
 
-function get_UniqueMonths() {
+  function get_UniqueMonths() {
     const meses = [
       ...new Set(
         geracao.map((item) =>
@@ -124,5 +122,4 @@ function get_UniqueMonths() {
   );
 }
 
-export default Painel
- 
+export default Painel;

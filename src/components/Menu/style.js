@@ -22,7 +22,7 @@ export const IcoCadastro = styled(FaLightbulb)`
 export const Text = styled.span`
   font-weight: 500;
   text-align: left;
-  font-size: 0.9em;
+  font-size: 1em;
   color: #a098ae;
 `;
 
@@ -30,7 +30,7 @@ export const MenuOption = styled.li`
   display: flex;
   align-items: center;
   gap: 22px;
-  padding: 12px 22px;
+  padding: 16px;
   border-radius: 20px;
 
   &:hover {
@@ -62,7 +62,7 @@ export const StyledMenu = styled.nav`
   flex-direction: column;
   align-items: center;
 
-  padding: 8px;
+  padding: 16px;
   width: 20%;
   min-width: 250px;
   height: 100%;

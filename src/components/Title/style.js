@@ -11,6 +11,6 @@ export const Title = styled.h1`
 
 export const SubTitle = styled.h2`
   color: #374557;
-  font-size: 1.2em;
+  font-size: 1.2rem;
   font-weight: 700;
 `;

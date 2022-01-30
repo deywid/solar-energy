@@ -5,6 +5,7 @@ export const TabContainer = styled.div`
   margin: 0 auto;
 
   font-family: Raleway, sans-serif;
+  font-weight: 700;
 
   display: flex;
   flex-direction: column;
@@ -25,7 +26,7 @@ export const TableList = styled.table`
     td {
         background-color: #fff;
         
-        color: #53575D
+        color: #53575D;
         font-weight:400;
         font-size: 16px;
 
@@ -48,6 +49,6 @@ export const TableList = styled.table`
         border-bottom: 1px solid #E8E8E8;
 
         text-align: center;
-        vertical-align: top;
+        vertical-align: center;
     }
 `;

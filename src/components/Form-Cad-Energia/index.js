@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+
 import { PageButton } from "../Buttons";
 import { SubTitle } from "../Title/style";
+import CustomInput from "../Inputs";
+import { CadEnergiaContainer, Form } from "./style";
 
 function CadEnergia() {
   const initialForm = {
@@ -33,35 +36,42 @@ function CadEnergia() {
   }
 
   return (
-    <div>
+    <CadEnergiaContainer>
       <SubTitle>Lançamento mensal</SubTitle>
-      <form className="item-form" onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit}>
         <label htmlFor="unidade">Unidade geradora</label>
-        <select
-          id="unidade_id"
-          name="unidade_id"
-          defaultValue=""
-          onChange={handleChange}
-        >
-          <option value="" disabled hidden></option>
-          {options.map((opt) => (
-            <option key={opt.id} value={opt.id}>
-              {opt.apelido}
-            </option>
-          ))}
-        </select>
+        <CustomInput>
+          <select
+            id="unidade_id"
+            name="unidade_id"
+            defaultValue=""
+            onChange={handleChange}
+          >
+            <option value="" disabled hidden></option>
+            {options.map((opt) => (
+              <option key={opt.id} value={opt.id}>
+                {opt.apelido}
+              </option>
+            ))}
+          </select>
+        </CustomInput>
         <label htmlFor="data">Mês/Ano</label>
-        <input type="date" id="data" name="data" onChange={handleChange} />
+        <CustomInput>
+          <input type="date" id="data" name="data" onChange={handleChange} />
+        </CustomInput>
+
         <label htmlFor="total_gerado">Total kW gerados</label>
-        <input
-          type="number"
-          id="total_gerado"
-          name="total_gerado"
-          onChange={handleChange}
-        />
-       <PageButton primary>Salvar</PageButton>
-      </form>
-    </div>
+        <CustomInput>
+          <input
+            type="number"
+            id="total_gerado"
+            name="total_gerado"
+            onChange={handleChange}
+          />
+        </CustomInput>
+        <PageButton primary>Salvar</PageButton>
+      </Form>
+    </CadEnergiaContainer>
   );
 }
 
