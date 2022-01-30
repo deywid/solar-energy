@@ -3,18 +3,10 @@
     {
       "apelido": "Painel 0",
       "local": "Palhoca",
-      "marca": "Canadian",
-      "modelo": "155w",
-      "ativo": true,
-      "id": 1
-    },
-    {
-      "apelido": "Sunny",
-      "local": "Floripa",
-      "marca": "Sun+",
+      "marca": "JinkoSolar",
       "modelo": "JKM 460M",
       "ativo": true,
-      "id": 2
+      "id": 1
     }
   ],
   "geracao": [
@@ -29,6 +21,12 @@
       "data": "2022-03-20",
       "total_gerado": "111",
       "id": 2
+    },
+    {
+      "unidade_id": "1",
+      "data": "2022-01-19",
+      "total_gerado": "56",
+      "id": 3
     }
   ]
 }

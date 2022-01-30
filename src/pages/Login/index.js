@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { PageButton } from "../../components/Buttons";
 
 import background from "../../images/login-bg-1920x1080.jpg";
 import logo from "../../images/logo.png";
@@ -31,13 +32,15 @@ function Login() {
             type="email"
             placeholder="E-mail"
             onChange={(ev) => setEmail(ev.target.value)}
-          /><span>{email}</span>
+          />
+          <span>{email}</span>
           <input
             type="password"
             placeholder="Senha"
             onChange={(ev) => setPassword(ev.target.value)}
-          /><span>{password}</span>
-          <button>Entrar</button>
+          />
+          <span>{password}</span>
+          <PageButton primary>Entrar</PageButton>
         </form>
       </div>
     </div>

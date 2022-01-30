@@ -3,6 +3,9 @@ import axios from "axios";
 
 import LineChart from "../../components/Charts";
 import { Title } from "../../components/Title/style";
+import Cards from "../../components/Cards";
+
+
 
 function Painel() {
   const [geracao, setGeracao] = useState([]);
@@ -60,7 +63,7 @@ function Painel() {
     return soma;
   }
 
-  function get_UniqueMonths() {
+function get_UniqueMonths() {
     const meses = [
       ...new Set(
         geracao.map((item) =>
@@ -101,7 +104,6 @@ function Painel() {
         align: "start",
         text: "Total de energia gerada por mês",
         padding: {
-          top: 10,
           bottom: 30,
         },
       },
@@ -111,13 +113,16 @@ function Painel() {
   return (
     <>
       <Title>Painel de indicadores</Title>
-      <div>{totalUnidades()}</div>
-      <div>{totalAtivo()}</div>
-      <div>{totalInativo()}</div>
-      <div>{mediaEnergia()}</div>
+      <Cards
+        tUnidades={totalUnidades()}
+        tAtivo={totalAtivo()}
+        tInativo={totalInativo()}
+        media={mediaEnergia()}
+      />
       <LineChart chartData={data} options={options} />
     </>
   );
 }
 
-export default Painel;
+export default Painel
+ 

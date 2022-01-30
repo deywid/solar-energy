@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+import { ListButton, PageButton } from "../Buttons";
+import { SubTitle } from "../Title/style";
+import { TabContainer, ButtonContainer, TableList } from "./style";
 
 function ListaUnidades() {
   const navigate = useNavigate();
@@ -14,56 +17,65 @@ function ListaUnidades() {
     });
   }, []);
 
- 
-  async function handleDelete(id) {
-    axios.delete(`http://localhost:3333/unidades/${id}`)
-   
+  function handleDelete(id) {
+    axios.delete(`http://localhost:3333/unidades/${id}`);
     setLista(lista.filter((item) => item.id !== id));
   }
 
   return (
-    <>
-      <h2>Lista de unidades</h2>
-
-      <table className="tg">
+    <TabContainer>
+      <SubTitle>Lista de unidades</SubTitle>
+      <TableList>
         <thead>
           <tr>
-            <th className="tg-0lax">ID</th>
-            <th className="tg-0lax">Apelido</th>
-            <th className="tg-0lax">Local</th>
-            <th className="tg-0lax">Marca</th>
-            <th className="tg-0lax">Modelo</th>
-            <th className="tg-0lax"></th>
-            <th className="tg-0lax"></th>
+            <th>ID</th>
+            <th>Apelido</th>
+            <th>Local</th>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th></th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
           {lista.map((li) => (
             <tr key={li.id}>
-              <td className="tg-0lax">{li.id}</td>
-              <td className="tg-0lax">{li.apelido}</td>
-              <td className="tg-0lax">{li.local}</td>
-              <td className="tg-0lax">{li.marca}</td>
-              <td className="tg-0lax">{li.modelo}</td>
-              <td className="tg-0lax">
-                <button type="button" onClick={() => navigate(`/Unidades/cadastro-unidade/${li.id}`, {state: li})}>Editar</button>
+              <td>{li.id}</td>
+              <td>{li.apelido}</td>
+              <td>{li.local}</td>
+              <td>{li.marca}</td>
+              <td>{li.modelo}</td>
+              <td>
+                <ListButton
+                  primary
+                  onClick={() =>
+                    navigate(`/Unidades/cadastro-unidade/${li.id}`, {
+                      state: li,
+                    })
+                  }
+                >
+                  Editar
+                </ListButton>
               </td>
-              <td className="tg-0lax">
-                <button type="button" onClick={() => handleDelete(li.id)}>
+              <td>
+                <ListButton type="button" onClick={() => handleDelete(li.id)}>
                   Remover
-                </button>
+                </ListButton>
               </td>
             </tr>
           ))}
         </tbody>
-      </table>
-      <button
-        type="button"
-        onClick={() => navigate("/Unidades/cadastro-unidade")}
-      >
-        Nova unidade
-      </button>
-    </>
+      </TableList>
+      <ButtonContainer>
+        <PageButton
+          maxWidth={"252px"}
+          primary
+          onClick={() => navigate("/Unidades/cadastro-unidade")}
+        >
+          Nova unidade
+        </PageButton>
+      </ButtonContainer>
+    </TabContainer>
   );
 }
 

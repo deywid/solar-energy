@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
+import { PageButton } from "../Buttons";
+import { SubTitle  } from "../Title/style";
 
 function CadUnidade() {
   const navigate = useNavigate();
@@ -33,7 +35,7 @@ function CadUnidade() {
 
   return (
     <>
-      <h2>Cadastro de unidade geradora</h2>
+    <SubTitle>Cadastro de unidade geradora</SubTitle>
       <form className="item-form" onSubmit={handleSubmit}>
         <label htmlFor="apelido">Apelido</label>
         <input
@@ -77,9 +79,9 @@ function CadUnidade() {
           />
           Ativo
         </label>
-        <button type="submit">Salvar</button>
+        <PageButton primary>Salvar</PageButton>
       </form>
-      <button onClick={() => navigate("/Unidades")}>Voltar</button>
+      <PageButton onClick={() => navigate("/Unidades")}>Voltar</PageButton>
     </>
   );
 }

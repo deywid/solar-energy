@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { PageButton } from "../Buttons";
+import { SubTitle } from "../Title/style";
 
 function CadEnergia() {
   const initialForm = {
@@ -32,7 +34,7 @@ function CadEnergia() {
 
   return (
     <div>
-      <h2>Lançamento mensal</h2>
+      <SubTitle>Lançamento mensal</SubTitle>
       <form className="item-form" onSubmit={handleSubmit}>
         <label htmlFor="unidade">Unidade geradora</label>
         <select
@@ -57,7 +59,7 @@ function CadEnergia() {
           name="total_gerado"
           onChange={handleChange}
         />
-        <button type="submit">Salvar</button>
+       <PageButton primary>Salvar</PageButton>
       </form>
     </div>
   );
