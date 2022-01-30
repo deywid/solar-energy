@@ -22,6 +22,10 @@ function App() {
               path="/Unidades/cadastro-unidade"
               element={<CadUnidade />}
             ></Route>
+            <Route
+              path="/Unidades/cadastro-unidade/:id"
+              element={<CadUnidade />}
+            ></Route>
           </Route>
           <Route path="/Cadastros" element={<Cadastros />} />
         </Route>

@@ -25,7 +25,7 @@ function Menu() {
         <StyledLink to="/Unidades">
           <MenuOption>
             <IcoUnidade />
-            <Text>Unidades</Text>
+            <Text>Unidades geradoras</Text>
           </MenuOption>
         </StyledLink>
         <StyledLink to="/Cadastros">

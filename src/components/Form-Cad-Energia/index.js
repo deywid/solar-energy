@@ -3,7 +3,7 @@ import axios from "axios";
 
 function CadEnergia() {
   const initialForm = {
-    unidade: "",
+    unidade_id: "",
     data: "",
     total_gerado: 0,
   };
@@ -36,14 +36,14 @@ function CadEnergia() {
       <form className="item-form" onSubmit={handleSubmit}>
         <label htmlFor="unidade">Unidade geradora</label>
         <select
-          id="unidade"
-          name="unidade"
+          id="unidade_id"
+          name="unidade_id"
           defaultValue=""
           onChange={handleChange}
         >
           <option value="" disabled hidden></option>
           {options.map((opt) => (
-            <option key={opt.apelido} value={opt.apelido}>
+            <option key={opt.id} value={opt.id}>
               {opt.apelido}
             </option>
           ))}

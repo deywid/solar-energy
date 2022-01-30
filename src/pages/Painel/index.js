@@ -5,23 +5,50 @@ import LineChart from "../../components/Charts";
 import { Title } from "../../components/Title/style";
 
 function Painel() {
-  const [request, setRequest] = useState([]);
+  const [geracao, setGeracao] = useState([]);
+  const [unidades, setUnidades] = useState([]);
 
   useEffect(() => {
     axios.get("http://localhost:3333/geracao").then(function (response) {
-      setRequest(response.data);
+      setGeracao(response.data);
     });
   }, []);
 
-  function get_TotalGenerated() {
-    const soma = [];
+  useEffect(() => {
+    axios.get("http://localhost:3333/unidades").then(function (response) {
+      setUnidades(response.data);
+    });
+  }, []);
 
-    const groupBy = request.reduce(function (acum, elem) {
+  const totalUnidades = () => {
+    return unidades.length;
+  };
+
+  const totalAtivo = () => {
+    return unidades.filter((item) => item.ativo).length;
+  };
+
+  const totalInativo = () => {
+    return unidades.filter((item) => !item.ativo).length;
+  };
+
+  const mediaEnergia = () => {
+    const totalEnergia = geracao.reduce((acum, elem) => {
+      return acum + +elem.total_gerado;
+    }, 0);
+    const media = totalEnergia / get_UniqueMonths().length;
+    return media.toFixed(0);
+  };
+
+  function get_TotalGenerated() {
+    const groupBy = geracao.reduce(function (acum, elem) {
       const mes = new Date(elem.data).getMonth();
       acum[mes] = acum[mes] || [];
       acum[mes].push(elem.total_gerado);
       return acum;
     }, Object.create(null));
+
+    const soma = [];
 
     for (let val of Object.values(groupBy)) {
       soma.push(
@@ -34,13 +61,15 @@ function Painel() {
   }
 
   function get_UniqueMonths() {
-    return [
+    const meses = [
       ...new Set(
-        request.map((item) =>
+        geracao.map((item) =>
           new Date(item.data).toLocaleString("pt-br", { month: "long" })
         )
       ),
     ];
+
+    return meses;
   }
 
   const data = {
@@ -82,6 +111,10 @@ function Painel() {
   return (
     <>
       <Title>Painel de indicadores</Title>
+      <div>{totalUnidades()}</div>
+      <div>{totalAtivo()}</div>
+      <div>{totalInativo()}</div>
+      <div>{mediaEnergia()}</div>
       <LineChart chartData={data} options={options} />
     </>
   );

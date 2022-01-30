@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
 
 function ListaUnidades() {
   const navigate = useNavigate();
@@ -12,6 +13,13 @@ function ListaUnidades() {
       setLista(response.data);
     });
   }, []);
+
+ 
+  async function handleDelete(id) {
+    axios.delete(`http://localhost:3333/unidades/${id}`)
+   
+    setLista(lista.filter((item) => item.id !== id));
+  }
 
   return (
     <>
@@ -38,16 +46,21 @@ function ListaUnidades() {
               <td className="tg-0lax">{li.marca}</td>
               <td className="tg-0lax">{li.modelo}</td>
               <td className="tg-0lax">
-                <button>Editar</button>
+                <button type="button" onClick={() => navigate(`/Unidades/cadastro-unidade/${li.id}`, {state: li})}>Editar</button>
               </td>
               <td className="tg-0lax">
-                <button>Remover</button>
+                <button type="button" onClick={() => handleDelete(li.id)}>
+                  Remover
+                </button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-      <button onClick={() => navigate("/Unidades/cadastro-unidade")}>
+      <button
+        type="button"
+        onClick={() => navigate("/Unidades/cadastro-unidade")}
+      >
         Nova unidade
       </button>
     </>
