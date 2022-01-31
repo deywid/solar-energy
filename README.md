@@ -1,24 +1,19 @@
 # solar-energy
- 2º projeto avaliativo do curso DevInHouse - React
+> 2º projeto avaliativo do curso DevInHouse - React
 
+### Sistema de gestão da energia solar
 
-#### changelog - temp
+#
 
-{23/jan}
--projeto criado utilizando o create-react-app
--realizado toda a estrutura de paginas e rotas utilizando a lib react-router-dom
+#### Getting Started
 
-{24/jan}
--feito um esboço da página de login segundo mockup disponibilizado
--condicionando a renderização do menu para que não seja visivel na página de login
+```
+$ git clone https://github.com/deywid/solar-energy.git
+$ cd "directory-name"
 
-{25&26/jan}
--refatorado a condicional de menu e rotas - definido uma página de layout padrão que comporta todas as demais páginas e componentes
--aplicado styled-components em parte do projeto - utilizado lib react-material-design
--realizado o uso de hooks para controle de componentes
--realizado o uso do axios para preencher e consumir o db a partir das requisições
+$ npm install
 
-{27&28&29/jan}
--estudo e aplicação do gráfico em linha - utilizado a lib react-chartjs-2
--implementação do calculo total gerado por mês no gráfico
--estudo de Objects.values...Object.keys 
+$ npm run server
+
+$ npm start
+```
