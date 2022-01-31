@@ -8,6 +8,7 @@ export const CardContainer = styled.div`
 
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 30px;
   padding-top: 2em;
 `;

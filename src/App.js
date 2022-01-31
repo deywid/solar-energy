@@ -1,5 +1,5 @@
 import "./App.css";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 import Login from "./pages/Login";
 import TemplatePage from "./pages/TemplatePage";
@@ -29,6 +29,7 @@ function App() {
           </Route>
           <Route path="/Cadastros" element={<Cadastros />} />
         </Route>
+        <Route path="*" element={<Navigate to="/Login" />} />
       </Routes>
     </>
   );

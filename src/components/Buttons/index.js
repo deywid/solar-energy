@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const ListButton = styled.button`
   font-family: "Raleway", sans-serif;
-  font-size: 1.1em;
+  font-size: .9em;
   font-weight: 700;
   color: #fbfcff;
   text-align: center;
