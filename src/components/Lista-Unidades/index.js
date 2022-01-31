@@ -5,6 +5,7 @@ import axios from "axios";
 import { ListButton, PageButton } from "../Buttons";
 import { SubTitle } from "../Title/style";
 import { TabContainer, ButtonContainer, TableList } from "./style";
+import { toast, ToastContainer } from "react-toastify";
 
 function ListaUnidades() {
   const navigate = useNavigate();
@@ -12,18 +13,36 @@ function ListaUnidades() {
   const [lista, setLista] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:3333/unidades").then(function (response) {
-      setLista(response.data);
-    });
+    async function request() {
+      try {
+        const response = await axios.get("http://localhost:3333/unidades");
+        setLista(response.data);
+      } catch (error) {
+        toast.error("Ocorreu um erro ao requisitar dados do sistema");
+        console.log(error);
+      }
+    }
+    request();
   }, []);
 
-  function handleDelete(id) {
-    axios.delete(`http://localhost:3333/unidades/${id}`);
-    setLista(lista.filter((item) => item.id !== id));
+  async function handleDelete(id) {
+    try {
+      const response = await axios.delete(
+        `http://localhost:3333/unidades/${id}`
+      );
+      if (response) {
+        setLista(lista.filter((item) => item.id !== id));
+        toast.success("Item removido com sucesso");
+      }
+    } catch (error) {
+      toast.error("Ocorreu um erro ao remover");
+      console.log(error);
+    }
   }
 
   return (
     <TabContainer>
+      <ToastContainer />
       <SubTitle>Lista de unidades</SubTitle>
       <TableList>
         <thead>

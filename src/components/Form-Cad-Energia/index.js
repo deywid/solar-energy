@@ -5,6 +5,7 @@ import { PageButton } from "../Buttons";
 import { SubTitle } from "../Title/style";
 import CustomInput from "../Inputs";
 import { CadEnergiaContainer, Form } from "./style";
+import { toast, ToastContainer } from "react-toastify";
 
 function CadEnergia() {
   const initialForm = {
@@ -17,10 +18,14 @@ function CadEnergia() {
   const [options, setOptions] = useState([]);
 
   useEffect(() => {
-    function handleGetOptions() {
-      axios.get("http://localhost:3333/unidades").then(function (response) {
+    async function handleGetOptions() {
+      try {
+        const response = await axios.get("http://localhost:3333/unidades");
         setOptions(response.data);
-      });
+      } catch (error) {
+        toast.error("Ocorreu um erro ao requisitar dados do sistema");
+        console.log(error);
+      }
     }
     handleGetOptions();
   }, []);
@@ -30,13 +35,29 @@ function CadEnergia() {
     setGeracao({ ...geracao, [name]: value });
   }
 
-  function handleSubmit(ev) {
+  async function handleSubmit(ev) {
     ev.preventDefault();
-    axios.post("http://localhost:3333/geracao", geracao);
+    if (!objetoVazio(geracao)) {
+      try {
+        await axios.post("http://localhost:3333/geracao", geracao);
+        toast.success("Cadastro salvo com sucesso");
+      } catch (error) {
+        toast.error("Ocorreu um erro ao salvar");
+        console.log(error);
+      }
+    } else {
+      toast.error("Preencha todos os campos antes de salvar");
+    }
+  }
+
+  function objetoVazio(obj) {
+    const valid = Object.values(obj).some((e) => e === "");
+    return valid;
   }
 
   return (
     <CadEnergiaContainer>
+      <ToastContainer />
       <SubTitle>Lançamento mensal</SubTitle>
       <Form onSubmit={handleSubmit}>
         <label htmlFor="unidade">Unidade geradora</label>

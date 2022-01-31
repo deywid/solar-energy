@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import { FiLock, FiMail } from "react-icons/fi";
 import { PageButton } from "../../components/Buttons";
 
@@ -23,7 +26,7 @@ function Login() {
 
   function handleLogin(event) {
     event.preventDefault();
-
+    toast.error("Usuário ou senha inválidos");
     if (email && password) {
       navigate("/");
     }
@@ -31,6 +34,7 @@ function Login() {
 
   return (
     <LoginContainer>
+      <ToastContainer icon={false} />
       <LoginLeftSide />
       <LoginRightSide>
         <LoginFormContainer>

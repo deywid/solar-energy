@@ -4,21 +4,36 @@ import axios from "axios";
 import LineChart from "../../components/Charts";
 import { Title } from "../../components/Title/style";
 import Cards from "../../components/Cards";
+import { toast, ToastContainer } from "react-toastify";
 
 function Painel() {
   const [geracao, setGeracao] = useState([]);
   const [unidades, setUnidades] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:3333/geracao").then(function (response) {
-      setGeracao(response.data);
-    });
+    async function request() {
+      try {
+        const response = await axios.get("http://localhost:3333/geracao");
+        setGeracao(response.data);
+      } catch (error) {
+        toast.error("Ocorreu um erro ao requisitar dados do sistema");
+        console.log(error);
+      }
+    }
+    request();
   }, []);
 
   useEffect(() => {
-    axios.get("http://localhost:3333/unidades").then(function (response) {
-      setUnidades(response.data);
-    });
+    async function request() {
+      try {
+        const response = await axios.get("http://localhost:3333/unidades");
+        setUnidades(response.data);
+      } catch (error) {
+        toast.error("Ocorreu um erro ao requisitar dados do sistema");
+        console.log(error);
+      }
+    }
+    request();
   }, []);
 
   const totalUnidades = () => {
@@ -37,11 +52,11 @@ function Painel() {
     const totalEnergia = geracao.reduce((acum, elem) => {
       return acum + +elem.total_gerado;
     }, 0);
-    const media = totalEnergia / get_UniqueMonths().length;
+    const media = totalEnergia / getMeses().length;
     return media.toFixed(0);
   };
 
-  function get_TotalGenerated() {
+  function getTotalGeradoMes() {
     const groupBy = geracao.reduce(function (acum, elem) {
       const mes = new Date(elem.data).getMonth();
       acum[mes] = acum[mes] || [];
@@ -61,7 +76,7 @@ function Painel() {
     return soma;
   }
 
-  function get_UniqueMonths() {
+  function getMeses() {
     const meses = [
       ...new Set(
         geracao.map((item) =>
@@ -70,15 +85,35 @@ function Painel() {
       ),
     ];
 
+    const months = [
+      "janeiro",
+      "fevereiro",
+      "março",
+      "abril",
+      "maio",
+      "junho",
+      "julho",
+      "agosto",
+      "setembro",
+      "outubro",
+      "novembro",
+      "dezembro",
+    ];
+    const sorter = (a, b) => {
+      return months.indexOf(a) - months.indexOf(b);
+    };
+
+    meses.sort(sorter);
+
     return meses;
   }
 
   const data = {
-    labels: get_UniqueMonths(),
+    labels: getMeses(),
     datasets: [
       {
         label: "",
-        data: get_TotalGenerated(),
+        data: getTotalGeradoMes(),
         backgroundColor: "#2196F3",
         borderWidth: 2,
         borderColor: "#2196F3",
@@ -118,6 +153,7 @@ function Painel() {
         media={mediaEnergia()}
       />
       <LineChart chartData={data} options={options} />
+      <ToastContainer />
     </>
   );
 }

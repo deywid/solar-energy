@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
+
+import { toast, ToastContainer } from "react-toastify";
+
 import { PageButton } from "../Buttons";
-import { SubTitle } from "../Title/style";
 import CustomInput from "../Inputs";
+import { SubTitle } from "../Title/style";
 import { CadUnidadeContainer, Form, ButtonContainer, Checkbox } from "./style";
 
 function CadUnidade() {
@@ -26,17 +29,42 @@ function CadUnidade() {
     setUnidades({ ...unidades, [name]: formValues });
   }
 
-  function handleSubmit(ev) {
+  async function handleSubmit(ev) {
     ev.preventDefault();
-    if (state) {
-      axios.put(`http://localhost:3333/unidades/${state.id}`, unidades);
+    if (!objetoVazio(unidades)) {
+      if (state) {
+        try {
+          await axios.put(
+            `http://localhost:3333/unidades/${state.id}`,
+            unidades
+          );
+          toast.success("Unidade alterada com sucesso");
+        } catch (error) {
+          toast.error("Ocorreu um erro ao tentar alterar a unidade");
+          console.log(error);
+        }
+      } else {
+        try {
+          await axios.post("http://localhost:3333/unidades", unidades);
+          toast.success("Unidade salva com sucesso");
+        } catch (error) {
+          toast.error("Ocorreu um erro ao salvar");
+          console.log(error);
+        }
+      }
     } else {
-      axios.post("http://localhost:3333/unidades", unidades);
+      toast.error("Preencha todos os campos antes de salvar");
     }
+  }
+
+  function objetoVazio(obj) {
+    const valid = Object.values(obj).some((e) => e === "");
+    return valid;
   }
 
   return (
     <CadUnidadeContainer>
+      <ToastContainer />
       <SubTitle>Cadastro de unidade geradora</SubTitle>
       <Form onSubmit={handleSubmit}>
         <label htmlFor="apelido">Apelido</label>
