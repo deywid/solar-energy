@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { FaChartPie, FaThList, FaLightbulb } from "react-icons/fa";
 
 import styled from "styled-components";
 
@@ -7,31 +6,20 @@ export const MenuLogo = styled.img`
   width: 50%;
 `;
 
-export const IcoPainel = styled(FaChartPie)`
-  color: #a098ae;
-`;
-
-export const IcoUnidade = styled(FaThList)`
-  color: #a098ae;
-`;
-
-export const IcoCadastro = styled(FaLightbulb)`
-  color: #a098ae;
-`;
-
 export const Text = styled.span`
   font-weight: 500;
   text-align: left;
   font-size: 1em;
-  color: #a098ae;
 `;
 
 export const MenuOption = styled.li`
   display: flex;
   align-items: center;
   gap: 22px;
+
   padding: 16px;
   border-radius: 20px;
+  color: #a098ae;
 
   &:hover {
     background: #d2faee;
@@ -47,9 +35,7 @@ export const StyledLink = styled(Link)`
     }
 
     ${Text},
-    ${IcoPainel},
-    ${IcoUnidade},
-    ${IcoCadastro} {
+    svg {
       color: #fff;
     }
   }

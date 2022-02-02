@@ -1,15 +1,8 @@
 import React from "react";
+
 import logo from "../../images/logo2.png";
-import {
-  StyledMenu,
-  MenuOption,
-  Text,
-  StyledLink,
-  MenuLogo,
-  IcoPainel,
-  IcoUnidade,
-  IcoCadastro,
-} from "./style";
+import { FaChartPie, FaThList, FaLightbulb } from "react-icons/fa";
+import { StyledMenu, MenuOption, Text, StyledLink, MenuLogo } from "./style";
 
 function Menu() {
   return (
@@ -18,19 +11,19 @@ function Menu() {
       <ul>
         <StyledLink to="/">
           <MenuOption>
-            <IcoPainel />
+            <FaChartPie />
             <Text>Painel</Text>
           </MenuOption>
         </StyledLink>
         <StyledLink to="/Unidades">
           <MenuOption>
-            <IcoUnidade />
+            <FaThList />
             <Text>Unidades geradoras</Text>
           </MenuOption>
         </StyledLink>
         <StyledLink to="/Cadastros">
           <MenuOption>
-            <IcoCadastro />
+            <FaLightbulb />
             <Text>Cadastro de energia gerada</Text>
           </MenuOption>
         </StyledLink>
