@@ -47,9 +47,15 @@ export const StyledMenu = styled.nav`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: stretch;
 
   padding: 16px;
   width: 20%;
   min-width: 250px;
   height: 100%;
+`;
+
+export const LogoutButton = styled.div`
+flex: 1;
+
 `;

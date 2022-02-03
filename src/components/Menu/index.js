@@ -4,7 +4,7 @@ import logo from "../../images/logo2.png";
 import { FaChartPie, FaThList, FaLightbulb } from "react-icons/fa";
 import { StyledMenu, MenuOption, Text, StyledLink, MenuLogo } from "./style";
 
-function Menu() {
+function Menu({ children }) {
   return (
     <StyledMenu>
       <MenuLogo src={logo} alt="solar-energy-logo" />
@@ -28,6 +28,7 @@ function Menu() {
           </MenuOption>
         </StyledLink>
       </ul>
+      {children}
     </StyledMenu>
   );
 }

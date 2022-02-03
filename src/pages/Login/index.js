@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { ToastContainer, toast } from "react-toastify";
@@ -23,12 +23,31 @@ function Login() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (!loading && localStorage.getItem("token") !== null) {
+      navigate("/");
+    }
+  }, [loading, navigate]);
 
   function handleLogin(event) {
     event.preventDefault();
-    toast.error("Usuário ou senha inválidos");
+
     if (email && password) {
-      navigate("/");
+      setLoading(true);
+      setTimeout(() => {
+        localStorage.setItem("token", "token");
+        setLoading(false);
+      }, 2000);
+    } else {
+      setLoading(true);
+      setTimeout(() => {
+        toast.error("Usuário ou senha inválidos", {
+          toastId: "preventDuplicated",
+        });
+        setLoading(false);
+      }, 1000);
     }
   }
 
@@ -57,7 +76,9 @@ function Login() {
                 onChange={(ev) => setPassword(ev.target.value)}
               />
             </CustomInput>
-            <PageButton>Entrar</PageButton>
+            <PageButton>
+              {loading ? <div className="loader"></div> : "Entrar"}
+            </PageButton>
           </LoginForm>
         </LoginFormContainer>
       </LoginRightSide>

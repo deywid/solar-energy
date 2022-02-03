@@ -1,13 +1,24 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 
 import Menu from "../../components/Menu";
 import { Container, MainContent } from "./style";
 
 function TemplatePage() {
+  const navigate = useNavigate();
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    navigate("/Login");
+  };
+
   return (
     <Container>
-      <Menu />
+      <Menu>
+        <div style={{ marginTop: "auto" }}>
+          <button onClick={logout}>Sair</button>
+        </div>
+      </Menu>
       <MainContent>
         <Outlet />
       </MainContent>

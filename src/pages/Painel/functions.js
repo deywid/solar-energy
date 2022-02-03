@@ -25,7 +25,6 @@ export function getTotalGeradoMes(geracao) {
     const mes = new Date(elem.data).getMonth();
     acum[mes] = acum[mes] || [];
     acum[mes].push(elem.total_gerado);
-    console.log(acum);
     return acum;
   }, Object.create(null));
 

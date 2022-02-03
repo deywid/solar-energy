@@ -18,7 +18,7 @@ export const ListButton = styled.button`
 
 export const PageButton = styled.button`
 font-family: "poppins", sans-serif;
-  color: #fff;
+  color: #fbfcff;
   font-weight: 500;
   font-size: 18px;
   line-height: 27px;
