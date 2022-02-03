@@ -9,7 +9,9 @@ function Menu({ children }) {
     <StyledMenu>
       <MenuLogo src={logo} alt="solar-energy-logo" />
       <ul>
-        <StyledLink to="/">
+        <StyledLink to="/" className={({ isActive }) =>
+              isActive ? "active" : undefined
+            }>
           <MenuOption>
             <FaChartPie />
             <Text>Painel</Text>

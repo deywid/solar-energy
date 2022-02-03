@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import styled from "styled-components";
 
@@ -26,10 +26,10 @@ export const MenuOption = styled.li`
   }
 `;
 
-export const StyledLink = styled(Link)`
+export const StyledLink = styled(NavLink)`
   text-decoration: none;
 
-  &:focus {
+  &.active {
     ${MenuOption} {
       background: #4cbc9a;
     }
@@ -56,6 +56,5 @@ export const StyledMenu = styled.nav`
 `;
 
 export const LogoutButton = styled.div`
-flex: 1;
-
+  flex: 1;
 `;
