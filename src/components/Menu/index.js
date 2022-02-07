@@ -1,37 +1,46 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
-import logo from "../../images/logo2.png";
+import logo from "../../assets/images/logo2.png";
 import { FaChartPie, FaThList, FaLightbulb } from "react-icons/fa";
-import { StyledMenu, MenuOption, Text, StyledLink, MenuLogo } from "./style";
+import * as Nav from "./style";
 
-function Menu({ children }) {
+function Menu() {
+  const navigate = useNavigate();
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    navigate("/Login");
+  };
+
   return (
-    <StyledMenu>
-      <MenuLogo src={logo} alt="solar-energy-logo" />
+    <Nav.Styled>
+      <Nav.Logo src={logo} alt="solar-energy-logo" />
       <ul>
-        <StyledLink to="/" className={({ isActive }) =>
-              isActive ? "active" : undefined
-            }>
-          <MenuOption>
+        <Nav.Link
+          to="/"
+          className={({ isActive }) => (isActive ? "active" : undefined)}
+        >
+          <Nav.Option>
             <FaChartPie />
-            <Text>Painel</Text>
-          </MenuOption>
-        </StyledLink>
-        <StyledLink to="/Unidades">
-          <MenuOption>
+            <Nav.Text>Painel</Nav.Text>
+          </Nav.Option>
+        </Nav.Link>
+        <Nav.Link to="/Unidades">
+          <Nav.Option>
             <FaThList />
-            <Text>Unidades geradoras</Text>
-          </MenuOption>
-        </StyledLink>
-        <StyledLink to="/Cadastros">
-          <MenuOption>
+            <Nav.Text>Unidades geradoras</Nav.Text>
+          </Nav.Option>
+        </Nav.Link>
+        <Nav.Link to="/Cadastros">
+          <Nav.Option>
             <FaLightbulb />
-            <Text>Cadastro de energia gerada</Text>
-          </MenuOption>
-        </StyledLink>
+            <Nav.Text>Cadastro de energia gerada</Nav.Text>
+          </Nav.Option>
+        </Nav.Link>
       </ul>
-      {children}
-    </StyledMenu>
+      <Nav.Logout onClick={logout}>Sair</Nav.Logout>
+    </Nav.Styled>
   );
 }
 

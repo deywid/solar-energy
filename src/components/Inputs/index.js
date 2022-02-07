@@ -1,9 +1,24 @@
 import React from "react";
 
-import {CustomDiv} from './style'
+import { Input } from "./style";
 
-function CustomInput({ children }) {
-  return <CustomDiv>{children}</CustomDiv>;
+function CustomInput({ label, htmlFor, children, ...props }) {
+  return (
+    <>
+      {label && <label htmlFor={htmlFor}>{label}</label>}
+      <Input>
+      {children}
+      <input
+            type={props.type}
+            id={props.id}
+            name={props.name}
+            value={props.value}
+            placeholder={props.placeholder}
+            onChange={props.onChange}
+          />
+      </Input>
+    </>
+  );
 }
 
 export default CustomInput;

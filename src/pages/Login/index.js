@@ -2,21 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
 import { FiLock, FiMail } from "react-icons/fi";
-import { PageButton } from "../../components/Buttons";
 
-import {
-  LoginContainer,
-  LoginFormContainer,
-  LoginLeftSide,
-  LoginRightSide,
-  LoginGreeting,
-  LoginForm,
-  LoginLogo,
-} from "./style";
+import { PageButton } from "../../components/Buttons";
+import Loader from "../../components/Loader";
 import CustomInput from "../../components/Inputs";
+import * as Page from "./style";
 
 function Login() {
   const navigate = useNavigate();
@@ -52,37 +43,35 @@ function Login() {
   }
 
   return (
-    <LoginContainer>
-      <ToastContainer icon={false} />
-      <LoginLeftSide />
-      <LoginRightSide>
-        <LoginFormContainer>
-          <LoginLogo />
-          <LoginForm onSubmit={handleLogin}>
-            <LoginGreeting>Seja bem vindo</LoginGreeting>
-            <CustomInput>
-              <FiMail />
-              <input
+    <>
+      <Page.Container>
+        <Page.LeftSide />
+        <Page.RightSide>
+          <Page.FormContainer>
+            <Page.Logo />
+            <Page.Form onSubmit={handleLogin}>
+              <Page.Greetings>Seja bem vindo</Page.Greetings>
+              <CustomInput
                 type="email"
                 placeholder="E-mail"
                 onChange={(ev) => setEmail(ev.target.value)}
-              />
-            </CustomInput>
-            <CustomInput>
-              <FiLock />
-              <input
+              >
+                <FiMail />
+              </CustomInput>
+              <CustomInput
                 type="password"
                 placeholder="Senha"
                 onChange={(ev) => setPassword(ev.target.value)}
-              />
-            </CustomInput>
-            <PageButton>
-              {loading ? <div className="loader"></div> : "Entrar"}
-            </PageButton>
-          </LoginForm>
-        </LoginFormContainer>
-      </LoginRightSide>
-    </LoginContainer>
+              >
+                <FiLock />
+              </CustomInput>
+              <PageButton>{loading ? <Loader /> : "Entrar"}</PageButton>
+            </Page.Form>
+          </Page.FormContainer>
+        </Page.RightSide>
+      </Page.Container>
+      <ToastContainer />
+    </>
   );
 }
 

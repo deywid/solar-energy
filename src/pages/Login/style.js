@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-import background from "../../images/background.png";
-import logo from "../../images/logo.png";
+import background from "../../assets/images/background.png";
+import logo from "../../assets/images/logo.png";
 
-export const LoginContainer = styled.div`
+export const Container = styled.div`
   width: 100vw;
   height: 100vh;
 
@@ -12,7 +12,7 @@ export const LoginContainer = styled.div`
   background-color: #fafafa; ;
 `;
 
-export const LoginLeftSide = styled.div`
+export const LeftSide = styled.div`
   width: 50%;
 
   background: url(${background});
@@ -21,7 +21,7 @@ export const LoginLeftSide = styled.div`
   background-position: center;
 `;
 
-export const LoginRightSide = styled.div`
+export const RightSide = styled.div`
   width: 50%;
 
   display: flex;
@@ -29,22 +29,22 @@ export const LoginRightSide = styled.div`
   justify-content: center;
 `;
 
-export const LoginLogo = styled.img`
+export const Logo = styled.img`
   width: 50%;
 `;
-LoginLogo.defaultProps = {
+Logo.defaultProps = {
   src: logo,
   alt: "solar-energy-logo",
 };
 
-export const LoginFormContainer = styled.div`
+export const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 `;
 
-export const LoginGreeting = styled.h3`
+export const Greetings = styled.h3`
   font-family: "Roboto Slab", serif;
   text-align: center;
   color: #374557;
@@ -52,7 +52,7 @@ export const LoginGreeting = styled.h3`
   font-size: 1.2em;
 `;
 
-export const LoginForm = styled.form`
+export const Form = styled.form`
   width: 100%;
 
   display: flex;

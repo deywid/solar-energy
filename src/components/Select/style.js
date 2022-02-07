@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Input = styled.div`
+export const Select = styled.div`
   display: flex;
   align-items: center;
 
@@ -10,20 +10,13 @@ export const Input = styled.div`
 
   color: #a098ae;
 
-  input {
+  select {
     width: 100%;
     padding: 12px 24px;
+
     border-radius: 10px;
-  }
-
-  input::-webkit-outer-spin-button,
-  input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-
-  input[type="number"] {
-    -moz-appearance: textfield;
+    cursor: pointer;
+    margin-right: 28px;
   }
 
   svg {

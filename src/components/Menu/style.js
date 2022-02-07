@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 
 import styled from "styled-components";
 
-export const MenuLogo = styled.img`
+export const Logo = styled.img`
   width: 50%;
 `;
 
@@ -12,7 +12,7 @@ export const Text = styled.span`
   font-size: 1em;
 `;
 
-export const MenuOption = styled.li`
+export const Option = styled.li`
   display: flex;
   align-items: center;
   gap: 22px;
@@ -26,11 +26,11 @@ export const MenuOption = styled.li`
   }
 `;
 
-export const StyledLink = styled(NavLink)`
+export const Link = styled(NavLink)`
   text-decoration: none;
 
   &.active {
-    ${MenuOption} {
+    ${Option} {
       background: #4cbc9a;
     }
 
@@ -41,7 +41,7 @@ export const StyledLink = styled(NavLink)`
   }
 `;
 
-export const StyledMenu = styled.nav`
+export const Styled = styled.nav`
   background-color: #fff;
 
   display: flex;
@@ -55,6 +55,23 @@ export const StyledMenu = styled.nav`
   height: 100%;
 `;
 
-export const LogoutButton = styled.div`
-  flex: 1;
+export const Logout = styled.button`
+  margin-top: auto;
+  padding: 8px;
+
+  font-weight: 500;
+  text-align: center;
+  font-size: 0.9em;
+
+  width: 100%;
+
+  background-color: #d2faee;
+  border-radius: 20px;
+  color: #4cbc9a;
+
+  cursor: pointer;
+
+  &:hover {
+    border: 1px solid #4cbc9a;
+  }
 `;

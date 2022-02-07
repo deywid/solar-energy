@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 import { PageButton } from "../Buttons";
-import { SubTitle } from "../Title/style";
+import { SubTitle } from "../Title";
 import CustomInput from "../Inputs";
+import CustomSelect from "../Select";
 import { CadEnergiaContainer, Form } from "./style";
-import { toast, ToastContainer } from "react-toastify";
 
 function CadEnergia() {
   const initialForm = {
@@ -15,20 +16,6 @@ function CadEnergia() {
   };
 
   const [geracao, setGeracao] = useState(initialForm);
-  const [options, setOptions] = useState([]);
-
-  useEffect(() => {
-    async function handleGetOptions() {
-      try {
-        const response = await axios.get("http://localhost:3333/unidades");
-        setOptions(response.data);
-      } catch (error) {
-        toast.error("Ocorreu um erro ao requisitar dados do sistema");
-        console.log(error);
-      }
-    }
-    handleGetOptions();
-  }, []);
 
   function handleChange(ev) {
     const { name, value } = ev.target;
@@ -56,43 +43,38 @@ function CadEnergia() {
   }
 
   return (
-    <CadEnergiaContainer>
-      <ToastContainer />
-      <SubTitle>Lançamento mensal</SubTitle>
-      <Form onSubmit={handleSubmit}>
-        <label htmlFor="unidade">Unidade geradora</label>
-        <CustomInput>
-          <select
+    <>
+      <CadEnergiaContainer>
+        <SubTitle>Lançamento mensal</SubTitle>
+        <Form onSubmit={handleSubmit}>
+          <CustomSelect
+            label="Unidade geradora"
+            htmlFor="unidade"
             id="unidade_id"
             name="unidade_id"
             defaultValue=""
             onChange={handleChange}
-          >
-            <option value="" disabled hidden></option>
-            {options.map((opt) => (
-              <option key={opt.id} value={opt.id}>
-                {opt.apelido}
-              </option>
-            ))}
-          </select>
-        </CustomInput>
-        <label htmlFor="data">Mês/Ano</label>
-        <CustomInput>
-          <input type="date" id="data" name="data" onChange={handleChange} />
-        </CustomInput>
-
-        <label htmlFor="total_gerado">Total kW gerados</label>
-        <CustomInput>
-          <input
+          />
+          <CustomInput
+            label="Mês/Ano"
+            htmlFor="data"
+            type="date"
+            id="data"
+            name="data"
+            onChange={handleChange}
+          />
+          <CustomInput
+            label="Total kW gerado"
+            htmlFor="total_gerado"
             type="number"
             id="total_gerado"
             name="total_gerado"
             onChange={handleChange}
           />
-        </CustomInput>
-        <PageButton primary>Salvar</PageButton>
-      </Form>
-    </CadEnergiaContainer>
+          <PageButton primary>Salvar</PageButton>
+        </Form>
+      </CadEnergiaContainer>
+    </>
   );
 }
 

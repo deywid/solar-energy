@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 
 import LineChart from "../../components/Charts";
-import { Title } from "../../components/Title/style";
+import { Title } from "../../components/Title/";
 import Cards from "../../components/Cards";
 
 import {
@@ -53,7 +53,6 @@ function Painel() {
         media={mediaEnergia(geracao)}
       />
       <LineChart geracao={geracao} />
-      <ToastContainer />
     </>
   );
 }

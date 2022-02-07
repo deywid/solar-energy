@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 
 import { PageButton } from "../Buttons";
+import { SubTitle } from "../Title";
 import CustomInput from "../Inputs";
-import { SubTitle } from "../Title/style";
-import { CadUnidadeContainer, Form, ButtonContainer, Checkbox } from "./style";
+import CustomCheckbox from "../Checkbox";
+import { CadUnidadeContainer, Form, ButtonContainer } from "./style";
 
 function CadUnidade() {
   const navigate = useNavigate();
@@ -63,72 +64,64 @@ function CadUnidade() {
   }
 
   return (
-    <CadUnidadeContainer>
-      <ToastContainer />
-      <SubTitle>Cadastro de unidade geradora</SubTitle>
-      <Form onSubmit={handleSubmit}>
-        <label htmlFor="apelido">Apelido</label>
-        <CustomInput>
-          <input
+    <>
+      <CadUnidadeContainer>
+        <SubTitle>Cadastro de unidade geradora</SubTitle>
+        <Form onSubmit={handleSubmit}>
+          <CustomInput
+            label="Apelido"
+            htmlFor="apelido"
             type="text"
             id="apelido"
             name="apelido"
             value={unidades.apelido}
             onChange={handleChange}
           />
-        </CustomInput>
-
-        <label htmlFor="local">Local</label>
-        <CustomInput>
-          <input
+          <CustomInput
+            label="Local"
+            htmlFor="local"
             type="text"
             id="local"
             name="local"
             value={unidades.local}
             onChange={handleChange}
           />
-        </CustomInput>
-
-        <label htmlFor="marca">Marca</label>
-        <CustomInput>
-          <input
+          <CustomInput
+            label="Marca"
+            htmlFor="marca"
             type="text"
             id="marca"
             name="marca"
             value={unidades.marca}
             onChange={handleChange}
           />
-        </CustomInput>
-
-        <label htmlFor="modelo">Modelo</label>
-        <CustomInput>
-          <input
+          <CustomInput
+            label="Modelo"
+            htmlFor="modelo"
             type="text"
             id="modelo"
             name="modelo"
             value={unidades.modelo}
             onChange={handleChange}
           />
-        </CustomInput>
-
-        <label htmlFor="ativo">
-          <Checkbox
+          <CustomCheckbox
+            label="Ativo"
+            htmlFor="ativo"
             type="checkbox"
             id="ativo"
             name="ativo"
             checked={unidades.ativo}
             onChange={handleChange}
           />
-          Ativo
-        </label>
-        <ButtonContainer>
-          <PageButton primary>Salvar</PageButton>
-          <PageButton type="button" onClick={() => navigate("/Unidades")}>
-            Voltar
-          </PageButton>
-        </ButtonContainer>
-      </Form>
-    </CadUnidadeContainer>
+          <ButtonContainer>
+            <PageButton primary>Salvar</PageButton>
+            <PageButton type="button" onClick={() => navigate("/Unidades")}>
+              Voltar
+            </PageButton>
+          </ButtonContainer>
+        </Form>
+      </CadUnidadeContainer>
+    </>
   );
 }
 
